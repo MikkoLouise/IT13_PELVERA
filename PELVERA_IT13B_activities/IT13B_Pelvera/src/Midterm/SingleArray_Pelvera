@@ -1,0 +1,12 @@
+package Midterm;
+
+public class SingleDimensionalArray_Pelvera {
+    public static void main(String[] args) {
+        char letter[] = {'A','B','C','D','E','F','G'};
+        
+        for(char a = 0; a < letter.length; a++){
+        System.out.print(letter[a] + ",");
+    }
+  System.out.println();
+    }
+}
