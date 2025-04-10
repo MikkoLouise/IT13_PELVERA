@@ -1,0 +1,38 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class EncryptFilePelvera {
+
+    public static void main(String[] args) {
+        String filePath = "C:\\Users\\Mikko\\OneDrive\\Desktop\\PelveraEncrypted.txt"; //Make this configurable
+        int key = 6;
+        String message = "I love you!\nGwapa ko!\nBuotan si Ma'am";
+
+        try {
+            String encryptedMessage = encryptMessage(message, key);
+            writeFile(filePath, encryptedMessage);
+            System.out.println("Encrypted Message written to file: " + filePath);
+            System.out.println("Encrypted Message:\n" + encryptedMessage);
+        } catch (IOException e) {
+            System.err.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    public static String encryptMessage(String message, int key) {
+        StringBuilder encrypted = new StringBuilder(); //More efficient than char array manipulation
+        for (char c : message.toCharArray()) {
+            if (c != '\n') {
+                encrypted.append((char) (c + key));
+            } else {
+                encrypted.append(c);
+            }
+        }
+        return encrypted.toString();
+    }
+
+    public static void writeFile(String filePath, String content) throws IOException {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write(content);
+        }
+    }
+}
